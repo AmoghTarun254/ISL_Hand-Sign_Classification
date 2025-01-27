@@ -7,7 +7,7 @@ import shutil
 
 def rotate_images(folder_path, save_folder_path, letter):
     # Define rotation degrees
-    degrees = [ 5, 6, 7, 8  ]
+    degrees = [ 8, 14, 20, 26  ] #Amogh (27/1/25): Changed the degrees of rotation list from [5, 6, 7, 8 ] to [ 8, 14, 20, 26  ]
 
     # Create a directory to save rotated images
     save_folder = os.path.join(save_folder_path, f"rotated_images_{letter}")
@@ -49,9 +49,9 @@ def rotate_images(folder_path, save_folder_path, letter):
 # Example usage
 
 
-main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Left-Handed Data 22nd Jan"
-save_folder_path = r"Rotated Left-Handed Data 22nd Jan Condensed"
+main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Right-Handed Data 25th Jan"
+save_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 25th Jan"
 for letter in range(ord('A'), ord('Z') + 1):
-    if chr(letter) not in ['E', 'H', 'J', 'Y', 'A', 'B', 'F', 'W'] :
+    if chr(letter) not in ['E', 'H', 'J', 'Y'] : #'A', 'B', 'F', 'W'] => Meant for purely left-handed images
         folder_path = f"{main_folder_path}\\{chr(letter)}"
         rotate_images(folder_path, save_folder_path, chr(letter))

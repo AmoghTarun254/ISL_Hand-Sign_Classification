@@ -97,7 +97,7 @@ def pre_process_landmark_dist(both_hand_landmarks):
 
 
 def logging_csv(character, preprocess_landmark_list):
-    csv_path = (r"left-handed_landmarks.csv") #output path of csv file to which keypoints have to be written
+    csv_path = (r"right-handed_landmarks 27th Jan.csv") #output path of csv file to which keypoints have to be written
     with open(csv_path, 'a', newline="") as f:
         writer = csv.writer(f)
         formatted_landmark_list = [format(x, '.16f') for x in preprocess_landmark_list]
@@ -562,7 +562,7 @@ def process_dir_singlehand (main_folder_path):
 #C to be processed
 # Method to process fodlers inside a main folder
 if __name__ == "__main__":
-    main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Left-Handed Data 22nd Jan Condensed"
+    main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 25th Jan"
     #char_folder_path = r"D:\ISL SOP 3-2\ISL Datasets 17th Jan\Rotated Right-Handed Data"
     #process_dir_singlehand(main_folder_path)
     process_directory(main_folder_path) #Amogh: To process a directory with multiple sub folders, each having images for an alphabet
