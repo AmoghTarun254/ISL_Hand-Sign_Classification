@@ -450,7 +450,7 @@ def process_directory (main_folder_path):
                             preprocessed_landmarks = pre_process_landmark(both_hand_landmarks)
                             if preprocessed_landmarks is not None:
                                 print("Logging into the folder")
-                                logging_csv(folder_name, preprocessed_landmarks)
+                                logging_csv(folder_name[-1], preprocessed_landmarks) #Amogh: Extracting the last letter from the folder name which has the alphabet classification
                         else:
                             print(f"Unable to read {filename}. It may not be an image file.")
 
