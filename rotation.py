@@ -49,9 +49,9 @@ def rotate_images(folder_path, save_folder_path, letter):
 # Example usage
 
 
-main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Right-Handed Data 25th Jan"
-save_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 25th Jan"
+main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Right-Handed Data 5th Feb (Includes E)"
+save_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 5th Feb (Includes E)"
 for letter in range(ord('A'), ord('Z') + 1):
-    if chr(letter) not in ['E', 'H', 'J', 'Y'] : #'A', 'B', 'F', 'W'] => Meant for purely left-handed images
+    if chr(letter) not in ['H', 'J', 'Y'] : #'A', 'B', 'F', 'W'] => Meant for purely left-handed images
         folder_path = f"{main_folder_path}\\{chr(letter)}"
         rotate_images(folder_path, save_folder_path, chr(letter))
