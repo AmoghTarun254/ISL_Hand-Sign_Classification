@@ -19,7 +19,7 @@ class KeyPointClassifier(object):
             input_data,
     ):
         # Ensure input_data is in the right format (numpy array)
-        input_data = np.array(input_data, dtype=np.float32)
+        input_data = np.array(input_data, dtype=np.float32) 
 
         # Set input tensor
         self.interpreter.set_tensor(self.input_details[0]['index'], input_data)

@@ -97,7 +97,7 @@ def pre_process_landmark_dist(both_hand_landmarks):
 
 
 def logging_csv(character, preprocess_landmark_list):
-    csv_path = (r"right-handed_landmarks (including E) 5th Feb.csv") #output path of csv file to which keypoints have to be written
+    csv_path = (r"25st_Feb_landmarks(includes noise).csv") #output path of csv file to which keypoints have to be written
     with open(csv_path, 'a', newline="") as f:
         writer = csv.writer(f)
         formatted_landmark_list = [format(x, '.16f') for x in preprocess_landmark_list]
@@ -109,7 +109,7 @@ def logging_csv(character, preprocess_landmark_list):
 def pre_process_landmark(both_hand_landmarks):
     length_landmarks = len(both_hand_landmarks)
     if length_landmarks == 0 or length_landmarks > 2 or both_hand_landmarks is None:
-        print("ERROR ERRROR ERROR ERROR ERROR ERRROR ERRORER ER WEREWOREREOA ER OAER OEWA OAEWRO EW E EWO ")
+        print("ERROR")
         return None
     elif (length_landmarks == 1):  # process only one set of landmarks wrt its wrist , keep the other as zero
 
@@ -411,9 +411,9 @@ def calc_landmark_list(image_local, hand_landmarks_local):
 def process_directory (main_folder_path):
     # Create an HandLandmarker object.
     base_options = python.BaseOptions(model_asset_path='hand_landmarker.task') 
-    options = vision.HandLandmarkerOptions(base_options=base_options, min_hand_detection_confidence=0.2,
-                                           min_hand_presence_confidence=0.2, min_tracking_confidence=0.2,
-                                           num_hands=2) #Amogh: Changed all 0.1s to 0.2
+    options = vision.HandLandmarkerOptions(base_options=base_options, min_hand_detection_confidence=0.5,
+                                           min_hand_presence_confidence=0.5, min_tracking_confidence=0.5,
+                                           num_hands=2) #Amogh(21/02/2025): Changed all 0.2s to 0.5
     hands = vision.HandLandmarker.create_from_options(options)
 
     try:
@@ -484,18 +484,18 @@ def process_folder(char_folder_path):
                         landmark_list = calc_landmark_list(debug_image, hand_landmarks)
                         both_hand_landmarks[extract_label(str(which_hand))] = landmark_list
                         debug_image = draw_landmarks(debug_image, landmark_list)
-                        cv2.imshow('Hand Gesture Recognition', debug_image)
-                        cv2.waitKey(0)
+                        #cv2.imshow('Hand Gesture Recognition', debug_image)
+                        #cv2.waitKey(0)
 
-                print(both_hand_landmarks.keys())
+                #print(both_hand_landmarks.keys())
                 #if(count !=1):
                 #if(len(both_hand_landmarks)!=2): # no two separate hands detected
                     #print("Removing file !!!!!   ")
                     #os.remove(file_path)
                 preprocessed_landmarks = pre_process_landmark(both_hand_landmarks)
-                #if preprocessed_landmarks is not None:
-                    #print("Logging into the folder")
-                    # logging_csv(folder_name, preprocessed_landmarks)
+                if preprocessed_landmarks is not None:
+                    print("Logging into the folder")
+                    logging_csv(folder_name, preprocessed_landmarks)
             else:
                 print(f"Unable to read {filename}. It may not be an image file.")
 
@@ -562,8 +562,8 @@ def process_dir_singlehand (main_folder_path):
 #C to be processed
 # Method to process fodlers inside a main folder
 if __name__ == "__main__":
-    main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 5th Feb (Includes E)"
-    #char_folder_path = r"D:\ISL SOP 3-2\ISL Datasets 17th Jan\Rotated Right-Handed Data"
+    main_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\Rotated Right-Handed Data 5th Feb (Includes Noise) - 23rd Feb"
+    #char_folder_path = r"D:\ISL SOP 3-2\ISL Datasets\A"
     #process_dir_singlehand(main_folder_path)
     process_directory(main_folder_path) #Amogh: To process a directory with multiple sub folders, each having images for an alphabet
     #absl.logging.set_verbosity(absl.logging.ERROR)

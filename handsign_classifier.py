@@ -350,10 +350,10 @@ if __name__ == "__main__":
     mp_drawing = mp.solutions.drawing_utils
 
     base_options = python.BaseOptions(model_asset_path='hand_landmarker.task')
-    options = vision.HandLandmarkerOptions(base_options=base_options, min_hand_detection_confidence=0.1,
+    options = vision.HandLandmarkerOptions(base_options=base_options, min_hand_detection_confidence=0.5,
                                            running_mode=VisionRunningMode.IMAGE,
-                                           min_hand_presence_confidence=0.1, min_tracking_confidence=0.1,
-                                           num_hands=2) #Amogh: Change to 0.5 to prevent the second hand from being identified for single-handed gestures
+                                           min_hand_presence_confidence=0.5, min_tracking_confidence=0.5,
+                                           num_hands=2) #Amogh: Change to 0.5 to prevent the second hand from being identified for single-handed gestures #Amogh(19th Feb): Changed to 0.8
     hands = vision.HandLandmarker.create_from_options(options)
 
     cap_device = 0  # Camera device index (e.g., 0 for the first camera)
