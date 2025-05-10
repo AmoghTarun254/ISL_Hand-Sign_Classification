@@ -4,7 +4,7 @@ import tensorflow as tf
 class KeyPointClassifier(object):
     def __init__(
             self,
-            model_path='models\keypoint_classifier_25th_Feb_Noisy_Data.tflite'  # Update the model path to point to your TFLite model
+            model_path='models\keypoint_classifier_right_handed_5th_Feb.tflite'  # Update the model path to point to your TFLite model
     ):
         # Load the TFLite model
         self.interpreter = tf.lite.Interpreter(model_path=model_path)

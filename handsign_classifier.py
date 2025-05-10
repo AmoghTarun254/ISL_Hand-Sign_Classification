@@ -101,9 +101,17 @@ def pre_process_landmark(both_hand_landmarks):
         temp_landmark_list_left = copy.deepcopy(both_hand_landmarks["Left"])
         temp_landmark_list_right = copy.deepcopy(both_hand_landmarks["Right"])
         temp_landmark_list = temp_landmark_list_left + temp_landmark_list_right
-        # Taking the average of the base points
+
+
+        #Amogh: Changes made on 19th March to remove any left hand noise present in the data
+        #if temp_landmark_list_left[0][0] < 0.788813886: #Maximum possible x coordinate for left hand when performing a two-handed sign
+
+            # Taking the average of the base points
         base_x = (temp_landmark_list_left[0][0] + temp_landmark_list_right[0][0]) / 2.0
         base_y = (temp_landmark_list_left[0][1] + temp_landmark_list_right[0][1]) / 2.0
+        #else:
+        #    base_x = temp_landmark_list_right[0][0]
+        #    base_y = temp_landmark_list_right[0][1]
 
         for landmark in temp_landmark_list:
             landmark[0] -= base_x
@@ -119,6 +127,7 @@ def pre_process_landmark(both_hand_landmarks):
             return n / max_value
 
         temp_landmark_list = list(map(normalize_, temp_landmark_list))
+
         # print("processed landmark list is ")
         # print(temp_landmark_list)
         return temp_landmark_list
